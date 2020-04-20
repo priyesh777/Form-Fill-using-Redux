@@ -14,20 +14,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  // let { type, payload } = action;
   switch (action.type) {
-    // case 'GET_PROVIENCE_TYPE':
-    //   return {
-    //     ...state,
-    //     provience_type: payload,
-    //   };
-
-    // case 'GET_PEOPLE_DETAILS':
-    //   return {
-    //     ...state,
-    //     people: payload,
-    //   };
-
     case formConstant.SET_FORM_DATA:
       return {
         ...state,
