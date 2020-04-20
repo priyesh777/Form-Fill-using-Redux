@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux'
 import {postForm, getPeopleDetails} from './formAction'
-
+import { Button } from 'react-bootstrap';
 
 export const Form = props => {
   
@@ -85,7 +85,7 @@ export const Form = props => {
   
       <div className="form-group">
         <div>
-          <button className="button is-link" onClick={(e) => handleSubmit}>Submit</button>
+          <Button className="Button is-link" onClick={(e) => handleSubmit}>Submit</Button>
         </div> 
       </div>
   
