@@ -27,11 +27,11 @@ export const Form = props => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="#home">FORM FILL-UP</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="#features">Detail-List</Nav.Link>
+          <Nav.Link href="#pricing">About</Nav.Link>
         </Nav>
       </Navbar>
       <br /> <br />

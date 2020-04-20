@@ -1,16 +1,16 @@
-import { formConstant } from '../actions/form';
+import { formConstant } from "../actions/form";
 
 const initialState = {
   people: [],
   individual_detail: [],
   formData: {
-    firstName: '',
-    lastName: '',
-    address: '',
-    email: '',
-    age: '',
-    proficiency: '',
-  },
+    first_name: "",
+    last_name: "",
+    address: "",
+    email: "",
+    age: "",
+    proficiency: ""
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,13 +33,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         formData: {
           ...state.formData,
-          [action.payload.key]: action.payload.value,
-        },
+          [action.payload.key]: action.payload.value
+        }
       };
     case formConstant.GET_PEOPLE_DETAILS_SUCCESS:
       return {
         ...state,
-        people: action.payload,
+        people: action.payload
       };
 
     default:
