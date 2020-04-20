@@ -1,20 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+// import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+// import { reducer as formReducer } from 'redux-form';
 import './index.css';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 import App from './App';
-import axios from 'axios';
+// import axios from 'axios';
 
-axios.defaults.baseURL = 'https://5e9c847e0fd0b50016f74689.mockapi.io'
+import store from './store';
 
-const rootReducer = combineReducers({
-  form: formReducer,
-});
+// axios.defaults.baseURL = 'https://5e9c847e0fd0b50016f74689.mockapi.io';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const rootReducer = combineReducers({
+//   form: formReducer,
+// });
+
+// const composeEnhancers =
+//   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+//     : compose;
+
+// const middleware = [thunk];
+
+// const enhancer = composeEnhancers(applyMiddleware(...middleware));
+
+// const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -22,4 +33,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
