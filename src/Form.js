@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-// import { postForm, getPeopleDetails } from './formAction';
-import { setFormData, getPeopleDetailsRequest } from "./actions/form";
-import { Figure, Card, Form, Button, Nav, Navbar } from "react-bootstrap";
+import {
+  setFormData,
+  getPeopleDetailsRequest,
+  postPeopleDetailsRequest
+} from "./actions/form";
+import { Figure, Card, Form, Button } from "react-bootstrap";
+import Image from "./assets/image/form-img.jpg";
+import { useHistory } from "react-router-dom";
 
 const FormComponent = props => {
+  const history = useHistory();
   const {
     people,
-    dispatch,
     individual_detail,
     formData,
     setData,
-    loadData
+    loadData,
+    postData
   } = props;
 
   useEffect(() => {
@@ -22,27 +28,22 @@ const FormComponent = props => {
     setData({ key: e.target.name, value: e.target.value });
   };
 
-  const handleSubmit = e => {};
+  const handleSubmit = e => {
+    postData(formData);
+    history.push("/details");
+  };
 
   return (
     <>
       <div className="container">
         <div className="row">
-          <div className="col-sm">
+          <div className="col-sm mt-5">
             <Figure>
-              <Figure.Image
-                width={171}
-                height={180}
-                alt="failed to load img"
-                src="#"
-              />
-              <Figure.Caption>
-                Nulla vitae elit libero, a pharetra augue mollis interdum.
-              </Figure.Caption>
+              <Figure.Image alt="failed to load img" src={Image} />
             </Figure>
           </div>
 
-          <div className="col-sm">
+          <div className="col-sm mt-5">
             <Card style={{ width: "25rem" }}>
               <Card.Body>
                 <Card.Title>Enter your Personal Information </Card.Title>
@@ -144,7 +145,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setData: payload => dispatch(setFormData(payload)),
-    loadData: payload => dispatch(getPeopleDetailsRequest(payload))
+    loadData: payload => dispatch(getPeopleDetailsRequest(payload)),
+    postData: payload => dispatch(postPeopleDetailsRequest(payload))
   };
 };
 

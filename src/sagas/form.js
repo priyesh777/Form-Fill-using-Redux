@@ -1,9 +1,11 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { getPeopleDetails } from "../API";
+import { getPeopleDetails, postPeopleDetails } from "../API";
 import {
   formConstant,
   getPeopleDetailsSuccess,
-  getPeopleDetailsFailure
+  getPeopleDetailsFailure,
+  postPeopleDetailsSuccess,
+  postPeopleDetailsFailure
 } from "../actions/form";
 
 function* getPeopleDetailsRequest(payload) {
@@ -15,10 +17,23 @@ function* getPeopleDetailsRequest(payload) {
   }
 }
 
+function* postPeopleDetailsRequest(payload) {
+  try {
+    const response = yield call(postPeopleDetails, payload);
+    yield put(postPeopleDetailsSuccess(response.data));
+  } catch (error) {
+    yield put(postPeopleDetailsFailure());
+  }
+}
+
 function* formWatcher() {
   yield takeLatest(
     formConstant.GET_PEOPLE_DETAILS_REQUEST,
     getPeopleDetailsRequest
+  );
+  yield takeLatest(
+    formConstant.POST_PEOPLE_DETAILS_REQUEST,
+    postPeopleDetailsRequest
   );
 }
 
