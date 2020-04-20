@@ -11,7 +11,9 @@ function* getPeopleDetailsRequest(payload) {
     const response = yield call(getPeopleDetails, payload);
     yield put(getPeopleDetailsSuccess(response.data));
   } catch (error) {
-    yield put(getPeopleDetailsFailure());
+    yield put(getPeopleDetailsFailure(
+      alert('data fetch error');
+    ));
   }
 }
 
