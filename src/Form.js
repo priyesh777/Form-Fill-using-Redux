@@ -1,170 +1,136 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 // import { postForm, getPeopleDetails } from './formAction';
-import { setFormData, getPeopleDetailsRequest } from './actions/form';
-import { Button } from 'react-bootstrap';
+import { setFormData, getPeopleDetailsRequest } from "./actions/form";
+import { Button, Nav, Navbar } from "react-bootstrap";
 
-export const Form = (props) => {
+export const Form = props => {
   const {
     people,
     dispatch,
     individual_detail,
     formData,
     setData,
-    loadData,
+    loadData
   } = props;
 
   useEffect(() => {
     loadData();
   }, [loadData]);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setData({ key: e.target.name, value: e.target.value });
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = e => {};
 
   return (
     <>
-      <form className="form">
-        <div className="form-group">
-          <div>
-            <label className="label">First Name</label>
-            <input
-              className="input"
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#features">Features</Nav.Link>
+          <Nav.Link href="#pricing">Pricing</Nav.Link>
+        </Nav>
+      </Navbar>
+      <br /> <br />
+      <div>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
               name="firstName"
               type="text"
-              placeholder="First Name"
-              value={formData.firstName || ''}
+              placeholder="your first Name"
+              value={formData.firstName || " "}
               onChange={handleChange}
             />
-          </div>
-        </div>
+          </Form.Group>
 
-        <div className="form-group">
-          <div>
-            <label className="label">Last Name</label>
-            <input
-              className="input"
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
               name="lastName"
               type="text"
-              placeholder="Last Name"
-              value={formData.lastName || ''}
+              placeholder="your last Name"
+              value={formData.lastName || " "}
               onChange={handleChange}
             />
-          </div>
-        </div>
+          </Form.Group>
 
-        <div className="form-group">
-          <div>
-            <label className="label">Email</label>
-            <input
-              className="input"
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
               name="email"
-              type="email"
-              placeholder="Email Address"
-              value={formData.email || ''}
+              type="text"
+              placeholder="enter your email"
+              value={formData.email || " "}
               onChange={handleChange}
             />
-          </div>
-        </div>
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-        <div className="form-group">
-          <div>
-            <label className="label">Age</label>
-            <input
-              className="input"
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Age</Form.Label>
+            <Form.Control
               name="age"
               type="number"
-              placeholder="Age"
-              value={formData.age || ''}
+              placeholder="First Name"
+              value={formData.age || " "}
               onChange={handleChange}
             />
-          </div>
-        </div>
+          </Form.Group>
 
-        <div className="form-group">
-          <div>
-            <label className="label">Address</label>
-            <input
-              className="input"
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
               name="address"
               type="text"
-              placeholder="Address"
-              value={formData.address || ''}
+              placeholder="your permanent location"
+              value={formData.address || " "}
               onChange={handleChange}
             />
-          </div>
-        </div>
+          </Form.Group>
 
-        <div className="form-group">
-          <div>
-            <label className="label">Proficiency</label>
-            <input
-              className="input"
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Proficiency</Form.Label>
+            <Form.Control
               name="proficiency"
               type="text"
-              placeholder="Proficiency-details"
-              value={formData.proficiency || ''}
+              placeholder="Your proficiency"
+              value={formData.proficiency || " "}
               onChange={handleChange}
             />
-          </div>
-        </div>
+          </Form.Group>
 
-        <div className="form-group">
-          <div>
-            <Button className="Button is-link" onClick={(e) => handleSubmit(e)}>
-              Submit
-            </Button>
-          </div>
-        </div>
-      </form>
-
-      <h2>LIST OF INDIVIDUALS</h2>
-      {/* <table border='1px' style={{width: '50%', marginTop: 50}} cellPadding="10px">
-          <thead>
-            <tr>
-              <th>Name of Person</th>
-              <th>Email</th>
-              <th>Age</th>
-              <th>Address</th>
-              <th>Proficiency</th>
-              <th>Provience</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              people.map((each, id) => {
-                // let { firstName, lastName, email, age, address, proficiency} = each
-                return (
-                  <tr key={id}>
-                    <td>{each.firstName} {each.lastName}</td>
-                    <td>{each.email}</td>
-                    <td>{each.age}</td>
-                    <td>{each.address}</td>
-                    <td>{each.proficiency}</td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table> */}
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={e => handleSubmit(e)}
+          >
+            Submit
+          </Button>
+        </Form>
+      </div>
     </>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     people: state.form.people,
     individual_detail: state.form.individual_detail,
-    formData: state.form.formData,
+    formData: state.form.formData
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setData: (payload) => dispatch(setFormData(payload)),
-    loadData: (payload) => dispatch(getPeopleDetailsRequest(payload)),
+    setData: payload => dispatch(setFormData(payload)),
+    loadData: payload => dispatch(getPeopleDetailsRequest(payload))
   };
 };
 

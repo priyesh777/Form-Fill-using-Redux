@@ -1,16 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import "./index.css";
+import App from "./App";
+import store from "./store";
 // import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 // import { reducer as formReducer } from 'redux-form';
-import './index.css';
 // import thunk from 'redux-thunk';
-import App from './App';
-// import axios from 'axios';
-
-import store from './store';
-
-// axios.defaults.baseURL = 'https://5e9c847e0fd0b50016f74689.mockapi.io';
 
 // const rootReducer = combineReducers({
 //   form: formReducer,
@@ -31,5 +27,5 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
