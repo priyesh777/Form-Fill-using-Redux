@@ -26,15 +26,6 @@ const FormComponent = props => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">FORM FILL-UP</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Detail-List</Nav.Link>
-          <Nav.Link href="#pricing">About</Nav.Link>
-        </Nav>
-      </Navbar>
-      <br /> <br />
       <div className="container">
         <div className="row">
           <div className="col-sm">
