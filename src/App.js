@@ -1,24 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Form from './Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
+// import './App.scss';
 
 class App extends Component {
-
-
   render() {
     return (
       <div className="App">
-   
         <header className="App-header">
           <h1 className="App-title">Welcome to a sample Redux form</h1>
         </header>
-      
+
         <div className="container">
-          <p className="App-intro">
-            Personal Info Form
-          </p>
+          <p className="App-intro">Personal Info Form</p>
           <Form />
         </div>
       </div>
