@@ -1,27 +1,35 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Row, Col } from "react-bootstrap";
 
 export const About = () => {
   return (
-    <Card className="text-center">
-      <Card.Header>Featured</Card.Header>
-      <Card.Body>
-        <Card.Title>My personal info</Card.Title>
-        <Card.Text>
-          <p>
-            I am a tech-enthusiast as well as a musician pursuing my career in
-            programming as an initial step to reach my future goals. <br />{" "}
-            Everyday I work towards my goal with the two best quotes,
-            <br />{" "}
-            <i>
-              {" "}
-              Nothing can destroy iron but the rust itself, ~ Ratan Tata{" "}
-            </i>{" "}
-            <br /> <i> You are your greatest investment, ~ Walt Disney</i>
-          </p>
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <Col>
+      <Row style={{ display: "flex", justifyContent: "center" }}>
+        <Card
+          style={{
+            width: "60rem",
+            textAlign: "center",
+            marginTop: "1%",
+            marginBottom: "2%"
+          }}
+        >
+          <Card.Body>
+            <Card.Title>Main goal of this application</Card.Title>
+            <Card.Text>
+              <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum."
+              </p>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Row>
+    </Col>
   );
 };
 export default About;

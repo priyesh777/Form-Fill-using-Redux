@@ -1,47 +1,66 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Card, Table } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import { Table } from "antd";
 import { getPeopleDetailsRequest } from "./actions/form";
 
 export const Details = props => {
   const { People, loadData } = props;
 
+  console.log("API data::", People);
+
   useEffect(() => {
     loadData();
   }, [loadData]);
 
+  const columns = [
+    {
+      title: <span className="table-title">Name</span>,
+      dataIndex: "first_name",
+      render: first_name => <p className="table-names">{first_name}</p>
+    },
+    {
+      title: <span className="table-title">Email</span>,
+      dataIndex: "email",
+      key: "email",
+      render: email => <p className="table-names">{email} </p>
+    },
+    {
+      title: <span className="table-title">Address</span>,
+      dataIndex: "address",
+      key: "address",
+      render: address => <p className="table-names">{address} </p>
+    },
+    {
+      title: <span className="table-title"> Age </span>,
+      dataIndex: "age",
+      key: "age",
+      render: age => <p className="table-names">{age} </p>
+    },
+    {
+      title: <span className="table-title">Proficiency</span>,
+      dataIndex: "proficiency",
+      key: "proficiency",
+      render: proficiency => <p className="table-names">{proficiency} </p>
+    }
+  ];
+
   return (
-    <div className="container">
-      <Card style={{ width: "68rem" }}>
-        <Card.Body>
-          <Card.Title> List of users </Card.Title>
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Age</th>
-                <th>Proficiency</th>
-              </tr>
-            </thead>
-            <tbody>
-              {People.map((each, index) => (
-                <tr key={index}>
-                  <td>
-                    {each.first_name} {each.last_name}
-                  </td>
-                  <td>{each.email}</td>
-                  <td>{each.address}</td>
-                  <td>{each.age}</td>
-                  <td>{each.proficiency}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Card.Body>
-      </Card>
-    </div>
+    <>
+      <Col>
+        <Row style={{ display: "flex", justifyContent: "center" }}>
+          <div className="users-table">
+            <Table
+              columns={columns}
+              size="medium"
+              dataSource={People}
+              bordered="true"
+              pagination={{ pageSize: 5 }}
+            />
+          </div>
+        </Row>
+      </Col>
+    </>
   );
 };
 

@@ -1,134 +1,179 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import {
-  setFormData,
-  getPeopleDetailsRequest,
-  postPeopleDetailsRequest
-} from "./actions/form";
-import { Figure, Card, Form, Button } from "react-bootstrap";
-import Image from "./assets/image/form-img.jpg";
-import { useHistory } from "react-router-dom";
+import { setFormData, postPeopleDetailsRequest } from "./actions/form";
+import { Figure, Card, Form, Row, Col } from "react-bootstrap";
+import Image from "./images/form-img.jpg";
+import BackArrow from "./images/arrow-left.svg";
+import { useHistory, Link } from "react-router-dom";
+import { Button } from "antd";
+import { toast } from "react-toastify";
 
 const FormComponent = props => {
   const history = useHistory();
-  const {
-    people,
-    individual_detail,
-    formData,
-    setData,
-    loadData,
-    postData
-  } = props;
+  const { formData, setData, postData } = props;
 
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
+  const [validate, setValidate] = useState(false);
 
   const handleChange = e => {
     setData({ key: e.target.name, value: e.target.value });
   };
 
   const handleSubmit = e => {
-    postData(formData);
-    history.push("/details");
+    e.preventDefault();
+    setValidate(true);
+    if (
+      formData.first_name !== "" &&
+      formData.last_name !== "" &&
+      formData.email !== "" &&
+      formData.age !== "" &&
+      formData.address !== "" &&
+      formData.phone !== ""
+    ) {
+      postData(formData);
+      toast.success("Registered successfully");
+      history.push("/");
+    }
+    console.log("form values::", formData);
   };
 
   return (
     <>
       <div className="container">
-        <div className="row">
-          <div className="col-sm mt-5">
+        <div className="support-button-section">
+          <Button
+            className="cps-form-backButton"
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            <img src={BackArrow} alt="back-arrow-left" /> Back
+          </Button>
+          <p>
+            Need Help?{" "}
+            <Link to="##" className="link-words">
+              Contact Support
+            </Link>
+          </p>
+        </div>
+
+        <Row>
+          <Col lg={6}>
             <Figure>
               <Figure.Image alt="failed to load img" src={Image} />
             </Figure>
-          </div>
+          </Col>
 
-          <div className="col-sm mt-5">
-            <Card style={{ width: "25rem" }}>
+          <Col lg={6}>
+            <Card style={{ width: "25rem", marginBottom: "25px" }}>
               <Card.Body>
                 <Card.Title>Enter your Personal Information </Card.Title>
-                <Form>
-                  <Form.Group controlId="formBasicEmail">
+                <Form noValidate validated={validate} onSubmit={handleSubmit}>
+                  <Form.Group>
                     <Form.Label>First Name</Form.Label>
                     <Form.Control
-                      name="firstName"
+                      name="first_name"
                       type="text"
-                      placeholder="your first Name"
-                      value={formData.firstName || " "}
+                      value={formData.firstName}
                       onChange={handleChange}
+                      aria-describedby="inputGroupPrepend"
+                      required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter first name
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group controlId="formBasicEmail">
+                  <Form.Group>
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control
-                      name="lastName"
+                      name="last_name"
                       type="text"
-                      placeholder="your last Name"
-                      value={formData.lastName || " "}
+                      value={formData.lastName}
                       onChange={handleChange}
+                      aria-describedby="inputGroupPrepend"
+                      required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter last name
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group controlId="formBasicEmail">
+                  <Form.Group>
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                       name="email"
-                      type="text"
-                      placeholder="enter your email"
-                      value={formData.email || " "}
+                      type="email"
+                      value={formData.email}
                       onChange={handleChange}
+                      aria-describedby="inputGroupPrepend"
+                      required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter a valid email address
+                    </Form.Control.Feedback>
                     <Form.Text className="text-muted">
                       We'll never share your email with anyone else.
                     </Form.Text>
                   </Form.Group>
 
-                  <Form.Group controlId="formBasicEmail">
+                  <Form.Group>
                     <Form.Label>Age</Form.Label>
                     <Form.Control
                       name="age"
                       type="number"
-                      placeholder="enter your age"
-                      value={formData.age || " "}
+                      value={formData.age}
                       onChange={handleChange}
+                      aria-describedby="inputGroupPrepend"
+                      required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter your age
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group controlId="formBasicEmail">
+                  <Form.Group>
                     <Form.Label>Address</Form.Label>
                     <Form.Control
                       name="address"
                       type="text"
-                      placeholder="your permanent location"
-                      value={formData.address || " "}
+                      value={formData.address}
                       onChange={handleChange}
+                      aria-describedby="inputGroupPrepend"
+                      required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter your address
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Proficiency</Form.Label>
+                  <Form.Group>
+                    <Form.Label>Phone Number</Form.Label>
                     <Form.Control
-                      name="proficiency"
-                      type="text"
-                      placeholder="Your proficiency"
-                      value={formData.proficiency || " "}
+                      name="phone"
+                      type="number"
+                      value={formData.phone}
                       onChange={handleChange}
+                      aria-describedby="inputGroupPrepend"
+                      required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Enter a valid phone number
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Button
-                    variant="primary"
+                    className="submit-button"
                     type="submit"
                     onClick={e => handleSubmit(e)}
+                    style={{ marginTop: "16px" }}
                   >
                     Submit
                   </Button>
                 </Form>
               </Card.Body>
             </Card>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </>
   );
@@ -145,7 +190,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setData: payload => dispatch(setFormData(payload)),
-    loadData: payload => dispatch(getPeopleDetailsRequest(payload)),
     postData: payload => dispatch(postPeopleDetailsRequest(payload))
   };
 };

@@ -9,7 +9,7 @@ const initialState = {
     address: "",
     email: "",
     age: "",
-    proficiency: ""
+    phone: ""
   }
 };
 
@@ -33,5 +33,4 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-
 export default reducer;
